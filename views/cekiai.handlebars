@@ -1,5 +1,6 @@
 <table>
     <p style="margin-top: 15px; font-size: 20px; color: blue">Cekiai</p> <br>
+    <a href="/cekiai/naujas" style="text-decoration: none; color:rgb(170, 19, 175)">Prideti nauja ceki</a>
     {{#each cekiai}}
     <tr>
         <td>
@@ -17,6 +18,10 @@
         <td>
             <p style="margin-top: 10px;">Apmokejimo tipo id</p>
             <p style="text-align: center; margin-right: 5px">{{this.apmokejimo_tipai_id}}</p>
+        </td>
+        <td>
+            <a href="/cekiai/pardavejas" style="margin-left: 20px; text-decoration:none; color:red">Pardavejas</a>
+            <a href="/cekiai/apmokejimas" style="margin-left: 20px; text-decoration:none; color:green">Apmokejimo tipas</a>
         </td>
     </tr>
     {{/each}}
