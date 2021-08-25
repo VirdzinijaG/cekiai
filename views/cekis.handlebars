@@ -1,0 +1,10 @@
+<form action="/cekiai/save" method="POST">
+    {{#if id}}
+    <input type="hidden" name="id" value="{{id}}">
+    {{/if}}
+    Pirkimo data <input type="date" name="data" value="{{ dateFormat data }}"><br>
+    Pardavejo id: <input type="number" name="pardavejai_id" value="{{pardavejai_id}}"><br>
+    Apmokejimo tipo id: <input type="number" name="apmokejimo_tipai_id" value="{{ apmokejimo_tipai_id }}"><br>
+    <input type="submit" value="Saugoti">
+</form>
+<a href="/cekiai">Atgal</a>

@@ -67,5 +67,28 @@ async function getCekiai() {
     }
 }
 
+async function getCekis(id) { // rodoma zmogaus infromacija pagal id
+    id = parseInt(id);
+    if (isFinite(id)) {
+        let conn;
+        try {
+            conn = await dbConnect();
+            let r = await dbQuery(
+                conn,
+                "select id, data, pardavejai_id, apmokejimo_tipai_id from cekiai where id = ?",
+                [id],
+            );
+            return r.results;
+        } finally {
+            try {
+                await dbDisconnect(conn);
+            } catch (err) {
+            }
+        }
+    } else {
+        throw new Error("Bad id");
+    }
+}
 
-export { getCekiai }
+
+export { getCekiai, getCekis }

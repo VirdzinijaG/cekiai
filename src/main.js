@@ -1,7 +1,7 @@
 import { default as express } from "express";
 import exphbs from "express-handlebars";
 
-import { getCekiai } from "./db.js";
+import { getCekiai, getCekis } from "./db.js";
 
 const app = express(); // paleidziama funkcija is node_modules
 const hbs = exphbs({
@@ -31,6 +31,31 @@ app.get("/cekiai", async (req, res) => {
     try {
         const cekiai = await getCekiai(); // gaunamas sarasas
         res.render("cekiai", { cekiai }); // nusiunciamas sarasas i narsykle
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+app.get("/cekiai/naujas", async (req, res) => {
+    res.type("text/html");
+    try {
+        res.render("cekis", {});
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+app.get("/cekiai/:id", async (req, res) => {
+    res.type("text/html");
+    try {
+        const cekiai = await getCekis(req.params.id);
+        if (cekiai.length > 0) {
+            res.render("cekis", cekiai[0]);
+        } else {
+            res.redirect("/cekiai");
+        }
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
