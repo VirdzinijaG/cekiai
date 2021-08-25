@@ -1,7 +1,7 @@
 import { default as express } from "express";
 import exphbs from "express-handlebars";
 
-
+import { getCekiai } from "./db.js";
 
 const app = express(); // paleidziama funkcija is node_modules
 const hbs = exphbs({
@@ -26,7 +26,16 @@ app.use(express.urlencoded({ // analizuoja gaunamas uzklausas // kai ateina post
     extended: true
 }));
 
-
+app.get("/cekiai", async (req, res) => {
+    res.type("text/html");
+    try {
+        const cekiai = await getCekiai(); // gaunamas sarasas
+        res.render("cekiai", { cekiai }); // nusiunciamas sarasas i narsykle
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
 
 
 

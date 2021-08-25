@@ -1,0 +1,23 @@
+<table>
+    <p style="margin-top: 15px; font-size: 20px; color: blue">Cekiai</p> <br>
+    {{#each cekiai}}
+    <tr>
+        <td>
+            <p style="margin-top: 10px; margin-right: 5px">ID</p>
+            <p style="text-align: center; margin-right: 5px"> {{this.id}}</p>
+        </td>
+        <td>
+            <p style="margin-top: 10px; margin-right: 5px">Pirkimo data</p>
+            <p style="text-align: center; margin-right: 5px">{{dateFormat this.data}}</p>
+        </td>
+        <td>
+            <p style="margin-top: 10px; margin-right: 5px">Pardavejo id</p>
+            <p style="text-align: center; margin-right: 5px"> {{this.pardavejai_id}}</p>
+        </td>
+        <td>
+            <p style="margin-top: 10px;">Apmokejimo tipo id</p>
+            <p style="text-align: center; margin-right: 5px">{{this.apmokejimo_tipai_id}}</p>
+        </td>
+    </tr>
+    {{/each}}
+</table>

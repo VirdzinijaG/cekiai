@@ -2,10 +2,10 @@ import mysql from "mysql";
 
 const connect = {
     host: "localhost",
-    usser: "nodejs",
+    user: "nodejs",
     password: "nodejs123456",
     database: "cekiai",
-    multipleStatments: true,
+    multipleStatements: true,
 };
 
 function dbConnect() {
@@ -51,3 +51,21 @@ function dbQuery(conn, ...args) {
         });
     });
 }
+
+async function getCekiai() {
+    let conn;
+    try {
+        conn = await dbConnect();
+        let r = await dbQuery(conn, "select id, data, pardavejai_id, apmokejimo_tipai_id from cekiai"); // duomenu paemimas is duomenu bazes
+        // console.log(r.results);
+        return r.results;
+    } finally {
+        try {
+            await dbDisconnect(conn);
+        } catch (err) {
+        }
+    }
+}
+
+
+export { getCekiai }
